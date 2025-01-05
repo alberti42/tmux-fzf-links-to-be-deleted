@@ -35,9 +35,11 @@ The plugin's Python-based architecture enables advanced users to:
 
 ---
 
-## Screencast
+## 🎥 Screencast
 
-<img src="https://github.com/alberti42/tmux-ssh-syncing/blob/main/doc/screencast.gif" alt="Screencast" />
+Watch the plugin in action to see how it enhances your tmux workflow!
+
+<a href="https://asciinema.org/a/697089" target="_blank"><img src="https://asciinema.org/a/697089.svg" /></a>
 
 ---
 
@@ -125,23 +127,25 @@ Default options are already provided. However, you can customize all options by 
 
 ```tmux
 # === tmux-fzf-links ===
-set-option -g @fzf-links-key o
-set-option -g @fzf-links-history-lines "0"
+# set-option -g @fzf-links-key o
+# set-option -g @fzf-links-history-lines "0"
 set-option -g @fzf-links-editor-open-cmd "tmux new-window -n 'emacs' /usr/local/bin/emacs +%line '%file'"
 set-option -g @fzf-links-browser-open-cmd "/path/to/browser '%url'"
 set-option -g @fzf-links-fzf-display-options "-w 100% --maxnum-displayed 20 --multi -0 --no-preview"
-set-option -g @fzf-links-path-extension "/usr/local/bin"
-set-option -g @fzf-links-loglevel-tmux "WARNING"
-set-option -g @fzf-links-loglevel-file "INFO"
-set-option -g @fzf-links-log-filename "~/log.txt"
+# set-option -g @fzf-links-path-extension "/usr/local/bin"
+# set-option -g @fzf-links-loglevel-tmux "WARNING"
+# set-option -g @fzf-links-loglevel-file "DEBUG"
+# set-option -g @fzf-links-log-filename "~/log.txt"
 set-option -g @fzf-links-python "python3"
-set-option -g @fzf-links-python-path "~/.virtualenvs/my_special_venv/lib/python3.11/site-packages"
-set-option -g @fzf-links-user-schemes-path "~/.local/share/tmux-fzf-links/user_schemes.py"
+# set-option -g @fzf-links-python-path "~/.virtualenvs/my_special_venv/lib/python3.11/site-packages"
+# set-option -g @fzf-links-user-schemes-path "~/.tmux/plugins/tmux-fzf-links/user_schemes/user_schemes.py"
 set-option -g @fzf-links-use-colors on
-set-option -g @fzf-links-ls-colors-filename "~/.cache/zinit/ls_colors.zsh"
+# set-option -g @fzf-links-ls-colors-filename "~/.cache/zinit/ls_colors.zsh"
 
 run-shell "~/.local/share/tmux-fzf-links/fzf-links.tmux"
 ```
+
+Comment out the options you find useful and replace the placeholders with appropriate paths and commands for your environment.
 
 ### Notes
 
@@ -159,8 +163,7 @@ run-shell "~/.local/share/tmux-fzf-links/fzf-links.tmux"
 
 2. **`fzf-links-browser-open-cmd`**: This option specifies the command for opening the browser. User `%url` as the placeholder for the url to be opened.
 
-3. **`@fzf-links-fzf-display-options`**:  
-   This option specifies the arguments passed to `fzf-tmux` and, subsequently, to `fzf`. Refer to the respective man pages of [`fzf-tmux`](https://github.com/junegunn/fzf#fzf-tmux) and [`fzf`](https://github.com/junegunn/fzf#options) for detailed documentation of the available arguments.
+3. **`@fzf-links-fzf-display-options`**: This option specifies the arguments passed to `fzf-tmux` and, subsequently, to `fzf`. Refer to the respective man pages of [`fzf-tmux`](https://github.com/junegunn/fzf#fzf-tmux) and [`fzf`](https://github.com/junegunn/fzf#options) for detailed documentation of the available arguments.
 
    - **`--maxnum-displayed`**: A custom option added by this plugin to limit the maximum number of items displayed in the `fzf` popup. If the total matches exceed this number, the plugin ensures that only up to `--maxnum-displayed` items are shown. This is particularly helpful for avoiding oversized popups when many matches are present.
 
@@ -177,13 +180,9 @@ run-shell "~/.local/share/tmux-fzf-links/fzf-links.tmux"
 
 6. **`@fzf-links-path-extension`**: This option is also not strictly necessary. It is only required if `fzf-tmux` or `tmux` binaries are not in the `$PATH` that was available when `tmux` started. The plugin only requires these two processes.
 
-Replace the placeholders with appropriate paths and commands for your environment.
-
 7. **`fzf-links-python`** and **`fzf-links-python-path`**: These two options allow specifying the path to the Python interpreter and, if needed, to a Python `site-packages` directory, which is appended to `$PYTHONPATH`. The plugin does not rely on any external dependencies. However, you may want to import external modules installed in `site-packages` to extend the functionality of the plugin in `user_schemes`.
 
-8. 🔍 **Logging**:
-
-   Control logging levels via these options:
+8. 🔍 **Logging**: Control logging levels via these options:
 
    - `@fzf-links-loglevel-tmux`: Adjust tmux log verbosity (`DEBUG`, `INFO`, `WARNING`, `ERROR`).
    - `@fzf-links-loglevel-file`: Set log verbosity for file logs.
