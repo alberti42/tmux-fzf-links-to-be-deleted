@@ -163,11 +163,19 @@ Comment out the options you find useful and replace the placeholders with approp
 
 2. **`fzf-links-browser-open-cmd`**: This option specifies the command for opening the browser. User `%url` as the placeholder for the url to be opened.
 
-3. **`@fzf-links-fzf-display-options`**: This option specifies the arguments passed to `fzf-tmux` and, subsequently, to `fzf`. Refer to the respective man pages of [`fzf-tmux`](https://github.com/junegunn/fzf#fzf-tmux) and [`fzf`](https://github.com/junegunn/fzf#options) for detailed documentation of the available arguments.
+3. **`@fzf-links-fzf-display-options`**: This option specifies the arguments passed to `fzf`. Refer to the man page of [`fzf`](https://github.com/junegunn/fzf#options) for detailed documentation of the available arguments. This plugin adds a few extra options to control the size of tmux popup: 
 
-   - **`--maxnum-displayed`**: A custom option added by this plugin to limit the maximum number of items displayed in the `fzf` popup. If the total matches exceed this number, the plugin ensures that only up to `--maxnum-displayed` items are shown. This is particularly helpful for avoiding oversized popups when many matches are present.
+	 - **`-h`**: A custom option added by this plugin to set the height in number of lines of the tmux popup. The argument can be a positive integer or a percentage of tmux pane height. For example: `-h 30` means that a panel hosting up to 30 matches will be shown. The extra lines consumed by the border are not accounted for by this option.
 
-   - **Automatic Height Calculation**: If `-h` (height) is not specified in the options, the plugin dynamically computes the necessary popup height to fit all items, up to the value set in `--maxnum-displayed`. If fewer matches exist, the height adjusts accordingly.
+   - **Automatic Height Calculation**: If `-h` (height) is not specified in the options, the plugin dynamically computes the necessary popup height to fit all matches.
+
+	 - **`-w`**: A custom option added by this plugin to set the width in number of characters of the tmux popup, without accounting for the 2 characters consumed by the borders. The argument can be a positive integer or a percentage of tmux pane width.
+
+	 - **`-x`**: A custom option added by this plugin to set the horizontal offset in number of characters of the tmux popup. This option must be a positive integer.
+	
+ 	 - **`-y`**: A custom option added by this plugin to set the vertical offset in number of characters of the tmux popup. This option must be a positive integer.
+
+   - **`--maxnum-displayed`**: A custom option added by this plugin to limit the maximum number of matches displayed in the `fzf` popup. If the total matches exceed this number, the plugin ensures that only up to `--maxnum-displayed` matches are shown. This is particularly helpful for avoiding oversized popups when many matches are present. 
 
    Example:  
    ```tmux
@@ -178,7 +186,7 @@ Comment out the options you find useful and replace the placeholders with approp
 
 5. **`@fzf-links-ls-colors-filename`**: This option is not strictly necessary if `$LS_COLORS` is available in the environment. Use it only if `tmux` is launched directly as the first process in the terminal, bypassing the shell initialization where `$LS_COLORS` is set.
 
-6. **`@fzf-links-path-extension`**: This option is also not strictly necessary. It is only required if `fzf-tmux` or `tmux` binaries are not in the `$PATH` that was available when `tmux` started. The plugin only requires these two processes.
+6. **`@fzf-links-path-extension`**: This option is also not strictly necessary. It is only required if `tmux` binary is not in the `$PATH` that was available when `tmux` started. The plugin only requires these two processes.
 
 7. **`fzf-links-python`** and **`fzf-links-python-path`**: These two options allow specifying the path to the Python interpreter and, if needed, to a Python `site-packages` directory, which is appended to `$PYTHONPATH`. The plugin does not rely on any external dependencies. However, you may want to import external modules installed in `site-packages` to extend the functionality of the plugin in `user_schemes`.
 

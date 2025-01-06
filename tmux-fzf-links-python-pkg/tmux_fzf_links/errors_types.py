@@ -14,7 +14,7 @@ class FailedResolvePath(Exception):
 class FailedChDir(Exception):
     """Raise exception when changing directory to tmux pane current directory fails"""
 
-class FailedTmuxPaneHeight(Exception):
+class FailedTmuxPaneSize(Exception):
     """Raise exception when tmux pane height cannot be determined"""
 
 class PatternNotMatching(Exception):
@@ -31,8 +31,8 @@ class FzfUserInterrupt(Exception):
 
 class FzfError(Exception):
     """Raise exception when fzf fails"""
-    
+
 class LsColorsNotConfigured(Exception):
     """Raise exception when LS_COLORS could not be configured"""
 
-__all__ = ["FailedChDir", "FailedTmuxPaneHeight", "PatternNotMatching", "NoSuitableAppFound", "CommandFailed", "FzfUserInterrupt", "FzfError", "FailedResolvePath"]
+__all__ = ["FailedChDir", "FailedTmuxPaneSize", "PatternNotMatching", "NoSuitableAppFound", "CommandFailed", "FzfUserInterrupt", "FzfError", "FailedResolvePath"]
